@@ -1,5 +1,6 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Services.IServices;
+using System.Diagnostics;
 
 namespace Mango.Web.Services
 {
@@ -46,7 +47,7 @@ namespace Mango.Web.Services
 				return await this.SendAsync<T>(new ApiRequest()
 			{
 				ApiType = SD.ApiType.GET,
-				Url = SD.ProductAPIBase + "/api/products" + id,
+				Url = SD.ProductAPIBase + "/api/products/" + id,
 				AccessToken = ""
 			}); 
 		}
