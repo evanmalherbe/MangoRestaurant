@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mango.Services.ProductAPI.Repository
 {
-	public class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
 	{
 
 		private readonly ApplicationDbContext _db;
@@ -31,6 +31,7 @@ namespace Mango.Services.ProductAPI.Repository
 				_db.Products.Add(product);
 			}
 			await _db.SaveChangesAsync();
+			//return _mapper.Map<ProductDTO>(product);
 
 			return _mapper.Map<Product, ProductDTO>(product);
 		}

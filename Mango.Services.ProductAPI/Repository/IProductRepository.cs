@@ -1,8 +1,8 @@
-﻿using Mango.Services.ProductAPI.Models.DTO;
+﻿using Mango.Services.ProductAPI.Models;
 
 namespace Mango.Services.ProductAPI.Repository
 {
-	public interface IProductRepository
+    public interface IProductRepository
 	{
 		Task<IEnumerable<ProductDTO>> GetProducts();
 		Task<ProductDTO> GetProductById(int productId);

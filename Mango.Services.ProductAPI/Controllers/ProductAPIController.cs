@@ -1,10 +1,11 @@
-﻿using Mango.Services.ProductAPI.Models.DTO;
+﻿using Mango.Services.ProductAPI.Models;
+using Mango.Services.ProductAPI.Models.DTO;
 using Mango.Services.ProductAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.ProductAPI.Controllers
 {
-	[Route("api/products")]
+    [Route("api/products")]
 	public class ProductAPIController : ControllerBase
 	{
 		protected ResponseDTO _response;
