@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
+using static System.Net.WebRequestMethods;
 
 namespace Mango.Services.Identity
 {
@@ -38,9 +39,9 @@ namespace Mango.Services.Identity
         {
           ClientId="mango",
           ClientSecrets= {new Secret("secret".Sha256())},
-          AllowedGrantTypes = GrantTypes.Code,
-          RedirectUris = {"https://localhost:44374/signin-odic"},
-          PostLogoutRedirectUris={"https://localhost:44374/signout-callback-odic"},
+          AllowedGrantTypes = GrantTypes.Code, 
+          RedirectUris = {"https://localhost:44374/signin-oidc"},
+          PostLogoutRedirectUris={"https://localhost:44374/signout-callback-oidc"},
           AllowedScopes = new List<string>
           {
             IdentityServerConstants.StandardScopes.OpenId,
@@ -50,7 +51,5 @@ namespace Mango.Services.Identity
           }
         },
        };
-
-
    }
 }

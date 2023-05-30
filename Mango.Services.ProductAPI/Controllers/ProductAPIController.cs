@@ -99,8 +99,7 @@ namespace Mango.Services.ProductAPI.Controllers
 			}
 			return _response;
 		}
-
-		
+				
 		[HttpDelete]
 		[Authorize(Roles = "Admin")]
 		[Route("{id}")]
