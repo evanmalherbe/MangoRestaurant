@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.ProductAPI.Controllers
 {
-    [Route("api/products")]
+  [Route("api/products")]
 	public class ProductAPIController : ControllerBase
 	{
 		protected ResponseDTO _response;
-		private readonly IProductRepository _productRepository;
+		private IProductRepository _productRepository;
 
 		public ProductAPIController(IProductRepository productRepository)
 		{
@@ -19,8 +19,8 @@ namespace Mango.Services.ProductAPI.Controllers
 			this._response = new ResponseDTO();
 		}
 
-		[Authorize]
 		[HttpGet]
+		[Authorize]
 		public async Task<object> Get()
 		{
 			try

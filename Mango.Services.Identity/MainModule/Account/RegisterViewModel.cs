@@ -11,7 +11,7 @@ public class RegisterViewModel
         [Required]
         public string Email { get; set; }
         public string FirstName { get; set; }
-        public string LastNAme { get; set; }
+        public string LastName { get; set; }
         [Required]
         public string Password { get; set; }
 
