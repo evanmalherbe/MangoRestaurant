@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mango.Services.ProductAPI.Models.DTO
+namespace Mango.Services.ProductAPI.Models
 {
     public class Product
     {
@@ -13,7 +13,5 @@ namespace Mango.Services.ProductAPI.Models.DTO
         public string Description { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
-
-
     }
 }
