@@ -12,11 +12,13 @@ namespace Mango.Web.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly IProductService _productService;
+		private readonly ICartService _cartService;
 
-		public HomeController(ILogger<HomeController> logger, IProductService productService)
+		public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
 		{
 			_logger = logger;
 			_productService = productService;
+			_cartService = cartService;
 		}
 
 		public async Task<IActionResult> Index()
@@ -44,6 +46,37 @@ namespace Mango.Web.Controllers
 			return View(model);
 		}
 
+		[HttpPost]
+		[ActionName("Details")]
+		[Authorize]
+		public async Task<IActionResult> DetailsPost(ProductDTO productDTO)
+		{
+			CartDTO cartDTO = new CartDTO()
+			{
+				CartHeader = new CartHeaderDTO ()
+				{ 
+					UserId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value
+				}
+			};
+			CartDetailsDTO cartDetails = new CartDetailsDTO()
+			{
+				Count = productDTO.Count,
+				ProductId = productDTO.ProductId
+			};
+
+			ResponseDTO resp = await _productService.GetProductByIdAsync<ResponseDTO>(productDTO.ProductId, "");
+			if (resp!= null && resp.IsSuccess)
+			{
+				cartDetails.Product = JsonConvert.DeserializeObject<ProductDTO>(Convert.ToString(resp.Result));
+			}
+			List<CartDetailsDTO> cartDetailsDTOs = new();
+			cartDetailsDTOs.Add(cartDetails);
+			cartDTO.CartDetails = cartDetailsDTOs;
+
+			string accessToken = await HttpContext.GetTokenAsync("access_token");
+			var addToCartResp = await _cartService.AddToCartAsync<ResponseDTO>(cartDTO, accessToken);
+			return View();
+		}
 		public IActionResult Privacy()
 		{
 			return View();
