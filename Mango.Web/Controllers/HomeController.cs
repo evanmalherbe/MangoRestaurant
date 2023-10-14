@@ -75,7 +75,11 @@ namespace Mango.Web.Controllers
 
 			string accessToken = await HttpContext.GetTokenAsync("access_token");
 			var addToCartResp = await _cartService.AddToCartAsync<ResponseDTO>(cartDTO, accessToken);
-			return View();
+			if (addToCartResp!= null && addToCartResp.IsSuccess)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+			return View(productDTO);
 		}
 		public IActionResult Privacy()
 		{
