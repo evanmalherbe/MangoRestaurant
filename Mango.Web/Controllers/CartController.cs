@@ -24,6 +24,7 @@ namespace Mango.Web.Controllers
 		}
 
 		[HttpPost]
+		[ActionName("ApplyCoupon")]
 		public async Task<IActionResult> ApplyCoupon(CartDTO cartDTO)
 		{
 			string userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
@@ -38,6 +39,7 @@ namespace Mango.Web.Controllers
 		}
 
 		[HttpPost]
+		[ActionName("RemoveCoupon")]
 		public async Task<IActionResult> RemoveCoupon(CartDTO cartDTO)
 		{
 			string userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
